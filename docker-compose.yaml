@@ -1,0 +1,100 @@
+version: '3.8'
+
+networks:
+  frontend:
+    name: frontend
+    driver: bridge
+  backend:
+    name: backend
+    driver: bridge
+
+volumes:
+  pgadmin:
+    name: pgadmin
+    driver: local
+  mysql:
+    name: mysql
+    driver: local
+
+services:
+  workspace:
+    image: registry.cn-hangzhou.aliyuncs.com/axf888/workspace
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        MYSQL_VERSION: ${MYSQL_VERSION}
+        COMPOSER_VERSION: ${COMPOSER_VERSION}
+        NODE_VERSION: ${NODE_VERSION}
+        DOCKER_VERSION: ${DOCKER_VERSION}
+        DOCKER_COMPOSE_VERSION: ${DOCKER_COMPOSE_VERSION}
+        CTOP_VERSION: ${CTOP_VERSION}
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /work/cache/vscode-server/:/root/.vscode-server/
+      - /work/cache/composer/:/root/.composer/
+      - /work/cache/npm/:/root/.npm/
+      - /work/workspace/:/work/workspace/
+      - /work/projects/:/work/projects/
+      - /work/docker/:/work/docker/
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $SSH_AUTH_SOCK:/ssh-agent
+    environment:
+      SSH_AUTH_SOCK: /ssh-agent
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 9527:9527
+      - 9528:9528
+      - 9529:9529
+    #   - 8080:8080
+      - 5000:5000
+    tty: true
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - 15432:80
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      - frontend
+      - backend
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 2792938834@qq.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+
+  traefik-proxy:
+    image: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesResolvers.myresolver.acme.storage=acme.json"
+      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=2792938834@qq.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "443:443"
+      - "80:80"
+      # - "8080:8080"
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - "./letsencrypt:/letsencrypt"
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - frontend
+
+  v2raya:
+    image: mzz2017/v2raya:1.0.1
+    container_name: v2raya
+    volumes:
+      - ./v2raya:/etc/v2raya
+    privileged: true
+    network_mode: host

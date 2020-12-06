@@ -1,0 +1,34 @@
+{
+	"name": "Existing Docker Compose (Extend)",
+
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": [
+		"../docker-compose.yaml"
+	],
+
+	"service": "workspace",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/work/workspace",
+
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"donjayamanne.githistory",
+		"eamodio.gitlens",
+		"oderwat.indent-rainbow",
+		"onecentlin.laravel-blade",
+		"amiralizadeh9480.laravel-extra-intellisense",
+		"stef-k.laravel-goto-controller",
+		"ritwickdey.liveserver",
+		"42crunch.vscode-openapi",
+		"felixfbecker.php-debug",
+		"bmewburn.vscode-intelephense-client",
+		"esbenp.prettier-vscode",
+		"ms-python.python",
+		"octref.vetur",
+		"elemefe.vscode-element-helper",
+		"redhat.vscode-yaml"
+	]
+}
