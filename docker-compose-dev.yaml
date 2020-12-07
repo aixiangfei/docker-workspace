@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  workspace:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        MYSQL_VERSION: ${MYSQL_VERSION}
+        COMPOSER_VERSION: ${COMPOSER_VERSION}
+        NODE_VERSION: ${NODE_VERSION}
+        DOCKER_VERSION: ${DOCKER_VERSION}
+        DOCKER_COMPOSE_VERSION: ${DOCKER_COMPOSE_VERSION}
+        CTOP_VERSION: ${CTOP_VERSION}
+    ports:
+      - 9527:9527
+      - 9528:9528
+      - 9529:9529
+      - 8080:8080
+      - 5000:5000

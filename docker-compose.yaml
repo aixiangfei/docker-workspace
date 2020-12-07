@@ -19,16 +19,6 @@ volumes:
 services:
   workspace:
     image: registry.cn-hangzhou.aliyuncs.com/axf888/workspace
-    build:
-      context: ./
-      dockerfile: Dockerfile
-      args:
-        MYSQL_VERSION: ${MYSQL_VERSION}
-        COMPOSER_VERSION: ${COMPOSER_VERSION}
-        NODE_VERSION: ${NODE_VERSION}
-        DOCKER_VERSION: ${DOCKER_VERSION}
-        DOCKER_COMPOSE_VERSION: ${DOCKER_COMPOSE_VERSION}
-        CTOP_VERSION: ${CTOP_VERSION}
     volumes:
       - /etc/timezone:/etc/timezone
       - /work/cache/vscode-server/:/root/.vscode-server/
@@ -44,12 +34,6 @@ services:
     networks:
       - frontend
       - backend
-    ports:
-      - 9527:9527
-      - 9528:9528
-      - 9529:9529
-    #   - 8080:8080
-      - 5000:5000
     tty: true
 
   pgadmin4:

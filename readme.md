@@ -29,7 +29,9 @@
 $ chmod -R 600 letsencrypt
 ```
 
-首先拉取镜像：
+登录阿里云镜像仓库： docker login --username=2792938834@qq.com registry.cn-hangzhou.aliyuncs.com
+
+拉取镜像：
 ```shell
 docker-compose pull
 ```
