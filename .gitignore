@@ -1,4 +1,1 @@
 .env
-.docker-sync/
-letsencrypt/
-v2raya/
