@@ -56,8 +56,6 @@ RUN ln -sf /opt/vimrc/.vimrc /root/.vimrc
 # 清除垃圾
 RUN rm -rf /var/lib/apt/lists/* && apt -y autoremove && apt -y autoclean && apt -y clean
 
-RUN mkdir /work/
-RUN mkdir /work/workspace/
-RUN mkdir /work/projects/
-RUN mkdir /work/docker-apps/
-WORKDIR /work/workspace/
+RUN mkdir -p /work/projects/
+RUN mkdir -p /work/docker-apps/
+WORKDIR /work/docker-apps/

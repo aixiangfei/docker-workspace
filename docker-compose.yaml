@@ -1,13 +1,5 @@
 version: '3.8'
 
-networks:
-  frontend:
-    name: frontend
-    driver: bridge
-  backend:
-    name: backend
-    driver: bridge
-
 services:
   workspace:
     image: registry.cn-hangzhou.aliyuncs.com/axf888/workspace
