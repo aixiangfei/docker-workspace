@@ -6,9 +6,6 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        MYSQL_VERSION: ${MYSQL_VERSION}
-        COMPOSER_VERSION: ${COMPOSER_VERSION}
-        NODE_VERSION: ${NODE_VERSION}
         DOCKER_VERSION: ${DOCKER_VERSION}
         DOCKER_COMPOSE_VERSION: ${DOCKER_COMPOSE_VERSION}
         CTOP_VERSION: ${CTOP_VERSION}
