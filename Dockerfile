@@ -106,4 +106,4 @@ RUN git config --global user.email "2792938834@qq.com"
 
 RUN mkdir -p /root/.vscode-server/
 
-WORKDIR /work/workspace/
+WORKDIR /work/

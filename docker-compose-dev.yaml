@@ -12,10 +12,4 @@ services:
         DOCKER_VERSION: ${DOCKER_VERSION}
         DOCKER_COMPOSE_VERSION: ${DOCKER_COMPOSE_VERSION}
         CTOP_VERSION: ${CTOP_VERSION}
-    ports:
-      - 9527:9527
-      - 9528:9528
-      - 9529:9529
-      - 8000:8000
-      - 8888:8888
-      - 5000:5000
+    

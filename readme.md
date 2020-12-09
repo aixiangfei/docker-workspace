@@ -5,7 +5,6 @@
 ```
 /work
   |- cache
-  |- workspace
   |- projects
      |- projectA
         |- code1

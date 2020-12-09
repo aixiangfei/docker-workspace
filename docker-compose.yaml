@@ -16,15 +16,20 @@ services:
       - /work/cache/vscode-server/:/root/.vscode-server/
       - /work/cache/composer/:/root/.composer/
       - /work/cache/npm/:/root/.npm/
-      - /work/workspace/:/work/workspace/
       - /work/projects/:/work/projects/
       - /work/dockers/:/work/dockers/
       - /var/run/docker.sock:/var/run/docker.sock
-      - $SSH_AUTH_SOCK:$SSH_AUTH_SOCK
-    environment:
-      SSH_AUTH_SOCK: $SSH_AUTH_SOCK
+      # - $SSH_AUTH_SOCK:$SSH_AUTH_SOCK
+      # environment:
+      # SSH_AUTH_SOCK: $SSH_AUTH_SOCK
+    ports:
+      - 9527:9527
+      - 9528:9528
+      - 9529:9529
+      - 8000:8000
+      - 8888:8888
+      - 5000:5000
     networks:
       - frontend
       - backend
     tty: true
-
