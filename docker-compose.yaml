@@ -5,9 +5,7 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/axf888/workspace
     volumes:
       - /etc/timezone:/etc/timezone
-      - /work/cache/vscode-server/:/root/.vscode-server/
-      - /work/cache/composer/:/root/.composer/
-      - /work/cache/npm/:/root/.npm/
+      - /root/.vscode-server/:/root/.vscode-server/
       - /work/projects/:/work/projects/
       - /work/dockers-apps/:/work/docker-apps/
       - /var/run/docker.sock:/var/run/docker.sock
