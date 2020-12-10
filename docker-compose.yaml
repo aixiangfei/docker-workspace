@@ -7,7 +7,7 @@ services:
       - /etc/timezone:/etc/timezone
       - /root/.vscode-server/:/root/.vscode-server/
       - /work/projects/:/work/projects/
-      - /work/dockers-apps/:/work/docker-apps/
+      - /work/docker-apps/:/work/docker-apps/
       - /var/run/docker.sock:/var/run/docker.sock
     network_mode: host
     tty: true
